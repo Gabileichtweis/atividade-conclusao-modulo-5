@@ -1,6 +1,6 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
-import loginImage from '../../public/images/loginImage.png';
+import loginImage from '../../images/loginImage.png';
 
 const Login: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Login: React.FC = () => {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: 'url()',
+            backgroundImage: 'url(`${loginImage}`)',
           }}
         />
         <Grid item height={'100%'} xs={12} sm={8} md={4} bgcolor={'brown'}>
