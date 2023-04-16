@@ -1,5 +1,6 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
+import Form from '../componentes/Form/Index';
 
 const Login: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ const Login: React.FC = () => {
             <Grid
               item
               xs={12}
-              height={'50%'}
+              height={'60%'}
               bgcolor={'gray'}
               display={'flex'}
               flexDirection={'column'}
@@ -38,24 +39,7 @@ const Login: React.FC = () => {
               <Typography variant="h4" textAlign={'center'}>
                 Entrar
               </Typography>
-              <Box component={'form'} textAlign={'center'}>
-                <TextField
-                  id="email"
-                  label={'E-mail'}
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                />
-                <TextField
-                  id="password"
-                  label={'Senha'}
-                  variant="outlined"
-                  fullWidth
-                />
-              </Box>
-              <Button variant="contained" size="large">
-                Entrar
-              </Button>
+              <Form tipo="login" />
             </Grid>
           </Grid>
         </Grid>
