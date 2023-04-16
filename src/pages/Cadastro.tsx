@@ -1,6 +1,8 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
 import loginImage from '../../public/images/loginImage.png';
+import Form from '../componentes/Form/Index';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   return (
@@ -34,33 +36,15 @@ const Login: React.FC = () => {
               padding={3}
             >
               <Typography variant="h4" textAlign={'center'}>
-                Entrar
+                Cadastre-se
               </Typography>
-              <Box component={'form'} textAlign={'center'}>
-                <TextField
-                  id="email"
-                  label={'E-mail'}
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                />
-                <TextField
-                  id="password"
-                  label={'Senha'}
-                  variant="outlined"
-                  fullWidth
-                />
-                <TextField
-                  id="password2"
-                  label={'Confirmação de senha'}
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                />
-              </Box>
-              <Button variant="contained" size="large">
-                Cadastrar
-              </Button>
+              <Form tipo="cadastro" />
+              <Typography textAlign="center" variant="body2">
+                Já possui conta?{' '}
+                <Link to="/cadastro" style={{ color: 'inherit' }}>
+                  Entrar
+                </Link>
+              </Typography>
             </Grid>
           </Grid>
         </Grid>

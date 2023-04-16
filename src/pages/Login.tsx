@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import Form from '../componentes/Form/Index';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   return (
@@ -40,6 +41,12 @@ const Login: React.FC = () => {
                 Entrar
               </Typography>
               <Form tipo="login" />
+              <Typography textAlign="center" variant="body2">
+                Ainda não possui uma conta?{' '}
+                <Link to="/cadastro" style={{ color: 'inherit' }}>
+                  Cadastre-se
+                </Link>
+              </Typography>
             </Grid>
           </Grid>
         </Grid>

@@ -20,8 +20,37 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
   };
 
   const cadastrar = (ev: React.FormEvent<HTMLFormElement>) => {
-    console.log('cadastrou');
+    if (!email) {
+      alert('digite um email válido');
+      return;
+    }
+
+    if (senha.length < 5 || senha !== repetirSenha) {
+      alert('digite uma senha válida');
+      return;
+    }
+
+    if (usuarios.some((usuario) => usuario.email === email)) {
+      alert('email já cadastrado');
+    }
+
+    const novoUsuario: Usuario = {
+      email,
+      senha,
+      recados: [],
+    };
+
+    setUsuarios((antigo) => [...antigo, novoUsuario]);
+    console.log('deu bom no cadastro');
+    limparCampos();
   };
+
+  const limparCampos = () => {
+    setEmail('');
+    setSenha('');
+    setRepetirSenha('');
+  };
+
   return (
     <Box
       onSubmit={tipo === 'login' ? logar : cadastrar}
@@ -33,6 +62,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
         label={'E-mail'}
         variant="outlined"
         margin="normal"
+        onChange={(ev) => setEmail(ev.target.value)}
         fullWidth
       />
 
@@ -41,6 +71,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
         label={'Senha'}
         variant="outlined"
         margin="normal"
+        onChange={(ev) => setSenha(ev.target.value)}
         fullWidth
       />
 
@@ -50,6 +81,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
           label={'Repita sua senha'}
           variant="outlined"
           margin="normal"
+          onChange={(ev) => setRepetirSenha(ev.target.value)}
           fullWidth
         />
       ) : (
