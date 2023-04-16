@@ -1,13 +1,33 @@
 import { Box, TextField, Button } from '@mui/material';
-import Recat from 'react';
+import Recat, { useState } from 'react';
+import { Usuario } from '../../types';
 
 interface FormProps {
   tipo: 'login' | 'cadastro';
 }
 
 const Form: Recat.FC<FormProps> = ({ tipo }) => {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [repetirSenha, setRepetirSenha] = useState('');
+
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+
+  const logar = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
+    console.log('logou');
+  };
+
+  const cadastrar = (ev: React.FormEvent<HTMLFormElement>) => {
+    console.log('cadastrou');
+  };
   return (
-    <Box component={'form'} padding={3}>
+    <Box
+      onSubmit={tipo === 'login' ? logar : cadastrar}
+      component={'form'}
+      padding={3}
+    >
       <TextField
         id="email"
         label={'E-mail'}
