@@ -2,6 +2,7 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import Form from '../componentes/Form/Index';
 import { Link } from 'react-router-dom';
+import { deepPurple, purple } from '@mui/material/colors';
 
 const Login: React.FC = () => {
   return (
@@ -30,15 +31,15 @@ const Login: React.FC = () => {
             <Grid
               item
               xs={12}
-              height={'60%'}
-              bgcolor={'gray'}
+              height={'100%'}
+              bgcolor={purple[700]}
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'space-around'}
               padding={3}
             >
               <Typography variant="h4" textAlign={'center'}>
-                Entrar
+                Bem-vindo ao app recados
               </Typography>
               <Form tipo="login" />
               <Typography textAlign="center" variant="body2">

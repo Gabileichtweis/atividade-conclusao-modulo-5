@@ -1,6 +1,7 @@
 import { Box, TextField, Button } from '@mui/material';
-import Recat, { useState } from 'react';
+import Recat, { useEffect, useState } from 'react';
 import { Usuario } from '../../types';
+import { Navigate } from 'react-router-dom';
 
 interface FormProps {
   tipo: 'login' | 'cadastro';
@@ -13,13 +14,37 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
 
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
+  useEffect(() => {
+    if (usuarios.length > 0) {
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+  }, [usuarios]);
+
+  useEffect(() => {
+    const buscarDados = localStorage.getItem('usuarios');
+
+    if (buscarDados) {
+      setUsuarios(JSON.parse(buscarDados));
+    }
+  }, []);
+
   const logar = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
-    console.log('logou');
+    if (
+      usuarios.some(
+        (usuario) => usuario.email === email && usuario.senha === senha
+      )
+    ) {
+      console.log('logou');
+    } else {
+      alert('usuario ou senha incorretos');
+    }
   };
 
   const cadastrar = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
     if (!email) {
       alert('digite um email válido');
       return;

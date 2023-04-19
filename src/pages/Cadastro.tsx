@@ -1,6 +1,5 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
-import loginImage from '../../public/images/loginImage.png';
 import Form from '../componentes/Form/Index';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +14,10 @@ const Login: React.FC = () => {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: 'url()',
+            backgroundImage: 'url(./images/cadastroImage.png)',
+            backgroundSize: '70%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
           }}
         />
         <Grid item height={'100%'} xs={12} sm={8} md={4} bgcolor={'brown'}>
@@ -28,7 +30,7 @@ const Login: React.FC = () => {
             <Grid
               item
               xs={12}
-              height={'50%'}
+              height={'100%'}
               bgcolor={'gray'}
               display={'flex'}
               flexDirection={'column'}
@@ -41,7 +43,7 @@ const Login: React.FC = () => {
               <Form tipo="cadastro" />
               <Typography textAlign="center" variant="body2">
                 Já possui conta?{' '}
-                <Link to="/cadastro" style={{ color: 'inherit' }}>
+                <Link to="/" style={{ color: 'inherit' }}>
                   Entrar
                 </Link>
               </Typography>
