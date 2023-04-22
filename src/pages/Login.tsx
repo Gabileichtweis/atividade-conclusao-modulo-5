@@ -3,6 +3,7 @@ import React from 'react';
 import Form from '../componentes/Form/Index';
 import { Link } from 'react-router-dom';
 import { deepPurple, purple } from '@mui/material/colors';
+import '../index.css';
 
 const Login: React.FC = () => {
   return (
@@ -21,18 +22,12 @@ const Login: React.FC = () => {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item height={'100%'} xs={12} sm={8} md={4} bgcolor={'brown'}>
-          <Grid
-            container
-            height={'100%'}
-            alignItems={'center'}
-            bgcolor={'honeydew'}
-          >
+        <Grid item height={'100%'} xs={12} sm={8} md={4} className="gradiente">
+          <Grid container height={'100%'} alignItems={'center'}>
             <Grid
               item
               xs={12}
               height={'100%'}
-              bgcolor={purple[700]}
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'space-around'}

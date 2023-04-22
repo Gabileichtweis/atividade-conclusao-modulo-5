@@ -1,7 +1,7 @@
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, Alert } from '@mui/material';
 import Recat, { useEffect, useState } from 'react';
 import { Usuario } from '../../types';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface FormProps {
   tipo: 'login' | 'cadastro';
@@ -11,8 +11,14 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [repetirSenha, setRepetirSenha] = useState('');
+  const [alerta, setAlerta] = useState<{ show: boolean; mensagem: string }>({
+    show: false,
+    mensagem: '',
+  });
 
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (usuarios.length > 0) {
@@ -36,9 +42,15 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
         (usuario) => usuario.email === email && usuario.senha === senha
       )
     ) {
+      localStorage.setItem('usuarioLogado', email);
+      navigate('/recados');
       console.log('logou');
     } else {
-      alert('usuario ou senha incorretos');
+      setAlerta({ show: true, mensagem: 'Usuário ou senha incorretos' });
+      setTimeout(() => {
+        setAlerta({ show: false, mensagem: '' });
+      }, 5000);
+      return;
     }
   };
 
@@ -46,17 +58,26 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
     ev.preventDefault();
 
     if (!email) {
-      alert('digite um email válido');
+      setAlerta({ show: true, mensagem: 'Digite um e-mail válido' });
+      setTimeout(() => {
+        setAlerta({ show: false, mensagem: '' });
+      }, 5000);
       return;
     }
 
     if (senha.length < 5 || senha !== repetirSenha) {
-      alert('digite uma senha válida');
+      setAlerta({ show: true, mensagem: 'Digite uma senha válida' });
+      setTimeout(() => {
+        setAlerta({ show: false, mensagem: '' });
+      }, 5000);
       return;
     }
 
     if (usuarios.some((usuario) => usuario.email === email)) {
-      alert('email já cadastrado');
+      setAlerta({ show: true, mensagem: 'E-mail já cadastrado' });
+      setTimeout(() => {
+        setAlerta({ show: false, mensagem: '' });
+      }, 5000);
     }
 
     const novoUsuario: Usuario = {
@@ -66,7 +87,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
     };
 
     setUsuarios((antigo) => [...antigo, novoUsuario]);
-    console.log('deu bom no cadastro');
+    navigate('/');
     limparCampos();
   };
 
@@ -117,10 +138,17 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
         variant="contained"
         size="large"
         fullWidth
-        sx={{ marginTop: 2 }}
+        sx={{ marginTop: 2, marginBottom: 2 }}
       >
         {tipo === 'login' ? 'ENTRAR' : 'CADASTRAR'}
       </Button>
+      {alerta.show ? (
+        <Alert variant="outlined" severity="error" sx={{ color: 'white' }}>
+          {alerta.mensagem}
+        </Alert>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };
