@@ -1,7 +1,7 @@
 export type Recado = {
   id: number;
   titulo: string;
-  descrição: string;
+  descricao: string;
 };
 
 export type Usuario = {
