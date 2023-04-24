@@ -1,10 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import reducer from './Recados/recadosSlice';
+import reducerRecados from './Recados/recadosSlice';
+import reducerUsuarios from './Usuarios/usuariosSlice';
 
 const rootReducer = combineReducers({
-  /* usuarios: () => 'usuarios',
-  usuarioLogado: () => 'usuarioLogado', */
-  recados: () => reducer,
+  usuarios: reducerUsuarios,
+  /* usuarioLogado: () => 'usuarioLogado', */
+  recados: reducerRecados,
 });
 
 export default rootReducer;

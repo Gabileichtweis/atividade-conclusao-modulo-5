@@ -1,18 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { Usuario } from '../../../types';
+import { RootState } from '../..';
 
-const estadoInicial: Usuario[] = [];
+const adapterUsuarios = createEntityAdapter<Usuario>({
+  selectId: (item) => item.email,
+});
+
+export const { selectAll, selectById } = adapterUsuarios.getSelectors(
+  (state: RootState) => state.usuarios
+);
 
 const usuariosSlice = createSlice({
-  initialState: estadoInicial,
-  name: 'Usuarios',
+  name: 'usuariosSlice',
+  initialState: adapterUsuarios.getInitialState(),
   reducers: {
-    adicionarUsuario: (state, action: PayloadAction<Usuario>) => {
-      if (state.some((contato) => contato.email === action.payload.email)) {
-        return state;
-      }
-
-      return [...state, action.payload];
-    },
+    adicionarUsuario: adapterUsuarios.addOne,
   },
 });
+
+export const { adicionarUsuario } = usuariosSlice.actions;
+
+export default usuariosSlice.reducer;
