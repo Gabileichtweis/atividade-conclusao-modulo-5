@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import Form from '../componentes/Form/Index';
 import { Link } from 'react-router-dom';
@@ -14,24 +14,25 @@ const Login: React.FC = () => {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: 'url(./images/cadastroImage.png)',
+            backgroundImage: 'url(./images/cadastroImagePadrao.png)',
             backgroundSize: '70%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
           }}
         />
-        <Grid item height={'100%'} xs={12} sm={8} md={4} bgcolor={'brown'}>
-          <Grid
-            container
-            height={'100%'}
-            alignItems={'center'}
-            bgcolor={'honeydew'}
-          >
+        <Grid
+          item
+          height={'100%'}
+          xs={12}
+          sm={8}
+          md={4}
+          sx={{ backgroundColor: '#455a64' }}
+        >
+          <Grid container height={'100%'} alignItems={'center'}>
             <Grid
               item
               xs={12}
               height={'100%'}
-              bgcolor={'gray'}
               display={'flex'}
               flexDirection={'column'}
               justifyContent={'space-around'}

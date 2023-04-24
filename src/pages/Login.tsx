@@ -2,8 +2,6 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import Form from '../componentes/Form/Index';
 import { Link } from 'react-router-dom';
-import { deepPurple, purple } from '@mui/material/colors';
-import '../index.css';
 
 const Login: React.FC = () => {
   return (
@@ -16,13 +14,20 @@ const Login: React.FC = () => {
           sm={4}
           md={8}
           sx={{
-            backgroundImage: 'url(./images/loginImage.png)',
+            backgroundImage: 'url(./images/loginImagePadrao.png)',
             backgroundSize: '70%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
           }}
         />
-        <Grid item height={'100%'} xs={12} sm={8} md={4} className="gradiente">
+        <Grid
+          item
+          height={'100%'}
+          xs={12}
+          sm={8}
+          md={4}
+          sx={{ backgroundColor: '#455a64' }}
+        >
           <Grid container height={'100%'} alignItems={'center'}>
             <Grid
               item
