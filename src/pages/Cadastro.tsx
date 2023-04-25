@@ -15,7 +15,7 @@ const Login: React.FC = () => {
           md={8}
           sx={{
             backgroundImage: 'url(./images/cadastroImagePadrao.png)',
-            backgroundSize: '70%',
+            backgroundSize: '80%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
           }}

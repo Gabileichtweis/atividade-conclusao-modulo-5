@@ -113,7 +113,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
       />
 
       <TextField
-        id="passwordt"
+        id="password"
         label={'Senha'}
         variant="outlined"
         margin="normal"
