@@ -1,86 +1,37 @@
-import { Button, Grid, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Divider, Fab, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { Add } from '@mui/icons-material';
+import ListaRecados from '../componentes/List/Index';
 
-const Recados = () => {
-  /*   const [emailUsuario, setEmailUsuario] = useState('');
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const existe = localStorage.getItem('usuarioLogado');
-    if (existe) {
-      setEmailUsuario(existe);
-    } else {
-      navigate('/');
-    }
-  }, []); */
-
+const Recados: React.FC = () => {
   return (
-    <Grid
-      container
-      height={'100vh'}
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      bgcolor={'blue'}
-    >
-      <Grid item height={'20%'} width={'80%'} bgcolor={'gray'}>
-        <Grid
-          container
-          height={'50%'}
-          bgcolor={'ButtonShadow'}
-          paddingLeft={1}
-          paddingRight={1}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Grid item height={'100%'} bgcolor={'forestgreen'}>
-            <Typography variant="h4">Recados</Typography>
-          </Grid>
-          <Grid item height={'100%'} bgcolor={'forestgreen'}>
-            <Button variant="contained">Icone</Button>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          height={'50%'}
-          spacing={2}
-          paddingLeft={1}
-          paddingRight={1}
-        >
-          <Grid item height={'100%'} xs={12} sm={3} md={4}>
-            <TextField
-              id="titulo"
-              label="Título"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-            />
-          </Grid>
-          <Grid item height={'100%'} xs={12} sm={8} md={7}>
-            <TextField
-              id="descricao"
-              label="Descrição"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-            />
-          </Grid>
-          <Grid item height={'100%'} xs={12} sm={1}>
-            <Button>
-              <AddCircleIcon sx={{ width: '70px', height: '70px' }} />
-            </Button>
-          </Grid>
-        </Grid>
+    <>
+      <Typography variant="h4">Recados</Typography>
+
+      <Divider />
+
+      <Grid container>
+        <Grid item xs={12}></Grid>
       </Grid>
-      <Grid item height={'80%'} width={'80%'} bgcolor={'red'}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim rerum,
-        molestiae eaque eligendi excepturi delectus error deserunt laborum
-        itaque aliquid minima unde ipsam, voluptatibus perspiciatis corporis,
-        sunt incidunt est tenetur.
-      </Grid>
-    </Grid>
+
+      <ListaRecados
+        recado={{ titulo: 'recado 1', descricao: 'descrição', id: 1 }}
+      />
+      <ListaRecados
+        recado={{ titulo: 'recado 2', descricao: 'descrição', id: 2 }}
+      />
+      <ListaRecados
+        recado={{ titulo: 'recado 3', descricao: 'descrição', id: 3 }}
+      />
+      <Fab
+        onClick={() => alert('clicou')}
+        color="primary"
+        aria-label="Adicionar novo contato"
+        sx={{ position: 'fixed', right: '30px', bottom: '30px' }}
+      >
+        <Add />
+      </Fab>
+    </>
   );
 };
 
