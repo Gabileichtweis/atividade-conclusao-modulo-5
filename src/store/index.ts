@@ -5,7 +5,7 @@ import localStorage from 'redux-persist/lib/storage';
 import rootReducer from './modules/rootReducer';
 
 const persistConfig = {
-  key: 'usuários',
+  key: 'ListaRecados',
   storage: localStorage,
 };
 
@@ -13,6 +13,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const appStore = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export const appPersistor = persistStore(appStore);

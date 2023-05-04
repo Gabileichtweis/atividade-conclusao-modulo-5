@@ -9,3 +9,5 @@ export type Usuario = {
   senha: string;
   recados: Recado[];
 };
+
+export type Acao = 'criar' | 'atualizar' | 'deletar';
