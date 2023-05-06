@@ -2,6 +2,7 @@ export type Recado = {
   id: number;
   titulo: string;
   descricao: string;
+  criadoPor: string;
 };
 
 export type Usuario = {

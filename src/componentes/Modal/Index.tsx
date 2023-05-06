@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Acao, Recado } from '../../types';
 import { Grid, TextField } from '@mui/material';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   adicionarRecado,
   atualizarRecado,
@@ -28,6 +28,8 @@ const Modal: React.FC<ModalProps> = ({ aberto, fecharModal, acao, recado }) => {
 
   const dispatch = useAppDispatch();
 
+  const usuarioLogado = useAppSelector((state) => state.usuarioLogado);
+
   useEffect(() => {
     if (recado && acao === 'atualizar') {
       setTitulo(recado.titulo);
@@ -43,6 +45,7 @@ const Modal: React.FC<ModalProps> = ({ aberto, fecharModal, acao, recado }) => {
             id: gerarId(),
             titulo,
             descricao,
+            criadoPor: usuarioLogado.email,
           })
         );
         limparCampos();
@@ -112,7 +115,7 @@ const Modal: React.FC<ModalProps> = ({ aberto, fecharModal, acao, recado }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={fecharModal}>CANCELAR</Button>
-        <Button onClick={fecharModal} autoFocus>
+        <Button onClick={salvar} autoFocus>
           SALVAR
         </Button>
       </DialogActions>

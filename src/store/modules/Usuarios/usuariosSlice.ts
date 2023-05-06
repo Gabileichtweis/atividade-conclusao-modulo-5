@@ -6,9 +6,8 @@ const adapterUsuarios = createEntityAdapter<Usuario>({
   selectId: (item) => item.email,
 });
 
-export const { selectAll, selectById } = adapterUsuarios.getSelectors(
-  (state: RootState) => state.usuarios
-);
+export const { selectAll: buscarUsuarios, selectById } =
+  adapterUsuarios.getSelectors((state: RootState) => state.usuarios);
 
 const usuariosSlice = createSlice({
   name: 'usuariosSlice',

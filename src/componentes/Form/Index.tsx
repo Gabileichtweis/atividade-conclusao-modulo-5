@@ -1,7 +1,13 @@
 import { Box, TextField, Button, Alert } from '@mui/material';
-import Recat, { useEffect, useState } from 'react';
+import Recat, { useState } from 'react';
 import { Usuario } from '../../types';
 import { useNavigate } from 'react-router-dom';
+import {
+  adicionarUsuario,
+  buscarUsuarios,
+} from '../../store/modules/Usuarios/usuariosSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setUsuarioLogado } from '../../store/modules/UsuarioLogado/usuarioLogadoSlice';
 
 interface FormProps {
   tipo: 'login' | 'cadastro';
@@ -16,23 +22,10 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
     mensagem: '',
   });
 
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (usuarios.length > 0) {
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    }
-  }, [usuarios]);
-
-  useEffect(() => {
-    const buscarDados = localStorage.getItem('usuarios');
-
-    if (buscarDados) {
-      setUsuarios(JSON.parse(buscarDados));
-    }
-  }, []);
+  const usuarios = useAppSelector(buscarUsuarios);
 
   const logar = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
@@ -42,7 +35,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
         (usuario) => usuario.email === email && usuario.senha === senha
       )
     ) {
-      localStorage.setItem('usuarioLogado', email);
+      dispatch(setUsuarioLogado({ email }));
       navigate('/recados');
       console.log('logou');
     } else {
@@ -86,7 +79,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
       recados: [],
     };
 
-    setUsuarios((antigo) => [...antigo, novoUsuario]);
+    dispatch(adicionarUsuario(novoUsuario));
     navigate('/');
     limparCampos();
   };
@@ -114,6 +107,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
 
       <TextField
         id="password"
+        type="password"
         label={'Senha'}
         variant="outlined"
         margin="normal"
@@ -124,6 +118,7 @@ const Form: Recat.FC<FormProps> = ({ tipo }) => {
       {tipo === 'cadastro' ? (
         <TextField
           id="passwordrepeat"
+          type="password"
           label={'Repita sua senha'}
           variant="outlined"
           margin="normal"
