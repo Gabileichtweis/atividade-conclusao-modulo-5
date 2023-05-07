@@ -27,12 +27,14 @@ const ListaRecados: React.FC<ListaRecadosProps> = ({ recado }) => {
         <ListItem>
           <ListItemText primary={recado.titulo} secondary={recado.descricao} />
           <IconButton
+            color="primary"
             aria-label="Editar recado"
             onClick={() => abrirModal('atualizar')}
           >
             <Edit />
           </IconButton>
           <IconButton
+            color="primary"
             aria-label="Deletar recado"
             onClick={() => abrirModal('deletar')}
           >

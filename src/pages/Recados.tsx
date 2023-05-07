@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { selectAll } from '../store/modules/Recados/recadosSlice';
 import { removerUsuarioLogado } from '../store/modules/UsuarioLogado/usuarioLogadoSlice';
 import { useNavigate } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Recados: React.FC = () => {
   const [abertura, setAbertura] = useState(false);
@@ -28,31 +29,66 @@ const Recados: React.FC = () => {
     <>
       <Grid
         container
-        xs={12}
-        sm={10}
-        md={8}
+        height={'100%'}
         display={'flex'}
-        justifyItems={'center'}
-        alignContent={'center'}
+        justifyContent={'center'}
+        sx={{ backgroundColor: '#455a64' }}
       >
-        <Grid bgcolor={'red'} item xs={12} display={'flex'}>
-          <Typography variant="h4">Recados</Typography>
-          <Button variant="contained" onClick={sair}>
-            Sair
-          </Button>
+        <Grid
+          item
+          height={'100%'}
+          marginTop={2}
+          xs={12}
+          sm={10}
+          md={8}
+          sx={{ backgroundColor: '#bbc7ccd8', borderRadius: '2%' }}
+        >
+          <Grid
+            container
+            height={'80%'}
+            display={'flex'}
+            justifyContent={'center'}
+          >
+            <Grid
+              item
+              height={'10%'}
+              xs={12}
+              sm={10}
+              md={8}
+              display={'flex'}
+              justifyContent={'space-between'}
+            >
+              <Typography variant="h3" color={'primary'}>
+                Recados
+              </Typography>
+              <Button onClick={sair}>
+                <LogoutIcon />
+              </Button>
+            </Grid>
+            <Divider />
+            <Grid
+              item
+              height={'80%'}
+              xs={12}
+              sm={10}
+              md={8}
+              display={'flex'}
+              alignItems={'flex-start'}
+            >
+              <Grid container>
+                {recados
+                  .filter((recado) => recado.criadoPor === usuarioLogado.email)
+                  .map((recado) => (
+                    <Grid item key={recado.id} xs={12}>
+                      <ListaRecados recado={recado} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
-        <Divider />
       </Grid>
 
-      <Grid container>
-        {recados
-          .filter((recado) => recado.criadoPor === usuarioLogado.email)
-          .map((recado) => (
-            <Grid item key={recado.id} xs={12}>
-              <ListaRecados recado={recado} />
-            </Grid>
-          ))}
-      </Grid>
       <Fab
         onClick={() => setAbertura(true)}
         color="primary"
