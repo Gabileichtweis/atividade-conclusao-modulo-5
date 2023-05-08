@@ -29,29 +29,22 @@ const Recados: React.FC = () => {
     <>
       <Grid
         container
-        height={'100%'}
         display={'flex'}
         justifyContent={'center'}
-        sx={{ backgroundColor: '#455a64' }}
+        bgcolor={'#455a64'}
+        sx={{ backgroundSize: 'cover' }}
       >
-        <Grid
-          item
-          height={'100%'}
-          marginTop={2}
-          xs={12}
-          sm={10}
-          md={8}
-          sx={{ backgroundColor: '#bbc7ccd8', borderRadius: '2%' }}
-        >
+        <Grid item xs={12} sm={10} md={8}>
           <Grid
             container
-            height={'80%'}
             display={'flex'}
             justifyContent={'center'}
+            marginTop={2}
+            marginBottom={2}
+            sx={{ backgroundColor: '#bbc7ccd8', borderRadius: '2%' }}
           >
             <Grid
               item
-              height={'10%'}
               xs={12}
               sm={10}
               md={8}
@@ -68,7 +61,6 @@ const Recados: React.FC = () => {
             <Divider />
             <Grid
               item
-              height={'80%'}
               xs={12}
               sm={10}
               md={8}
